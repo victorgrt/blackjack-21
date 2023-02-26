@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 20:45:14 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/26 23:02:42 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ hand *ft_generate_hand(int nb)
     card *deck = ft_generate_deck();
     card *carte_generated = ft_pick_hand_player(deck);
 
-
     if (nb == 1)
     {
         main->carte = carte_generated;
@@ -64,10 +63,23 @@ hand *ft_generate_hand(int nb)
     return (main);
 }
 
+void    ft_add_carte_to_hand(hand *player_hand)
+{
+
+    while (player_hand)
+    {
+        if (player_hand->next == NULL)
+            player_hand->next = ft_generate_hand(1);
+        player_hand = player_hand->next;
+    }
+}
+
 /*Une main = une liste de cartes.*/
 
 int main(void)
 {     
+    char decision; 
+     hand *new_cart;
     //On génére un deck
     //On distribue 1 carte a la banque : il faut un main pour la banque
     hand *hand_bank = ft_generate_hand(1);
@@ -78,25 +90,101 @@ int main(void)
     //printf("bank : %d\n", hand_bank->carte->points);
     //printf("player : %d\n", hand_player->carte->points);
     print_score(hand_bank, hand_player);
+    decision = demande_decision();
+    if (decision == 's')
+    {
+        //faire jouer la banque
+        if (ft_player_score(hand_bank) <= 17)
+        {
+            new_cart = ft_generate_hand(1);
+            hand_bank->next = new_cart;
+            printer_hand(hand_bank);
+            printer_hand(hand_player);
+            print_score(hand_bank, hand_player);
+            if (ft_player_score(hand_bank) <= 17)
+            {
+                new_cart = ft_generate_hand(1);
+                hand_bank->next = new_cart;
+                printer_hand(hand_bank);
+                printer_hand(hand_player);
+                print_score(hand_bank, hand_player);
+            }
+            if (ft_player_score(hand_bank) >= ft_player_score(hand_player))
+            {
+                printf("Perdu");
+                return (0);
+            }
+            else
+            {
+                printf("GG !");
+                return (0);
+            }
+        }
+        return (1);
+    }
+    else if (decision  == 'c')
+    {
+        new_cart = ft_generate_hand(1);
+        hand_player->next->next = new_cart;
+        printer_hand(hand_player);
+        if (ft_player_score(hand_player) > 21)
+        {
+            printf("Perdu");
+            return (0);
+        }
+        print_score(hand_bank, hand_player);
+        decision = demande_decision();
+        if (decision == 'c')
+        {
+            new_cart = ft_generate_hand(1);
+            hand_player->next->next->next = new_cart;
+            printer_hand(hand_player);
+            if (ft_player_score(hand_player) > 21)
+            {
+                printf("Perdu");
+                return (0);
+            }
+            print_score(hand_bank, hand_player);
+            decision = demande_decision();
+        } 
+        else if (decision == 's')
+        {
+            if (ft_player_score(hand_bank) <= 17)
+            {
+                new_cart = ft_generate_hand(1);
+                hand_bank->next = new_cart;
+                printer_hand(hand_bank);
+                printer_hand(hand_player);
+                print_score(hand_bank, hand_player);
+                if (ft_player_score(hand_bank) <= 17)
+                {
+                    new_cart = ft_generate_hand(1);
+                    hand_bank->next = new_cart;
+                    printer_hand(hand_bank);
+                    printer_hand(hand_player);
+                    print_score(hand_bank, hand_player);
+                }
+                if (ft_player_score(hand_bank) >= ft_player_score(hand_player))
+                {
+                    print_score(hand_bank, hand_player);
+                    printf("Perdu");
+                    return (0);
+                }
+                else
+                {
+                    printf("GG !");
+                    return (0);
+                }
+            }
+            return (1);
+        }
+    }
+    else if (decision == 'a')
+    {
+        printf("Dommage, une prochaine fois peut être\n");
+        return (1);
+    }
     // hand *player_hand = malloc(sizeof(hand) * 2);
-
-    // card *deck = ft_generate_deck();
-    // int random = random_generator(1, 52);
-    // card *carte_banque = ft_pick_hand_bank(deck, random);
-    // printer_card(carte_banque);
-    // card *carte_player1 = ft_pick_hand_player(deck, random);
-    // card *carte_player2 = ft_pick_hand_player(deck, random);
-    // player_hand->   = carte_player1;
-    // player_hand->next_card = carte_player2;
-    
-    // printer_card(carte_player1);
-    // printer_card(carte_player2);
-    //printf("Carte banque : %s of %s\n", carte_banque->value, carte_banque->suit);
-    //printf("Carte player : %s of %s\n", carte_player->value, carte_player->suit);
-    // for (int i = 0; i < 52; i++)
-    // {
-    //     printf("%s of %s\n", deck[i].value, deck[i].color);
-    // }
     //free(deck);
     return (0);
 }

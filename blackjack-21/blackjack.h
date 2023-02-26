@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:24:57 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 20:40:43 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/26 22:44:57 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,9 @@ int ft_get_value(card *carte);
 card *ft_pick_hand_player(card *deck);
 card *ft_pick_hand_bank(card *deck);
 card *ft_generate_deck();
+
+int    ft_player_score(hand *player);
+
+char demande_decision();
 
 #endif

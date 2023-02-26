@@ -6,7 +6,7 @@
 #    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 15:05:06 by victor            #+#    #+#              #
-#    Updated: 2023/02/26 17:28:27 by victor           ###   ########.fr        #
+#    Updated: 2023/02/26 22:20:38 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CC		=	gcc
 # * SRC * #
 
 SRC = blackjack.c ft_score.c ft_cards.c ft_utils.c ft_printer.c ft_hand.c\
+	ft_gameplay.c \
 
 OBJ = ${SRC:.c=.o}
 

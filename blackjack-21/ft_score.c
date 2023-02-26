@@ -6,11 +6,23 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:07:55 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 17:39:14 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/26 22:44:31 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "blackjack.h"
+
+int    ft_player_score(hand *player)
+{
+    int player_score = 0;
+    
+    while (player)
+    {
+        player_score += player->carte->points;
+        player = player->next;
+    }
+    return (player_score);
+}
 
 int ft_get_value(card *carte)
 {
