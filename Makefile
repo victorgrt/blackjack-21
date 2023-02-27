@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
+#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 15:05:06 by victor            #+#    #+#              #
-#    Updated: 2023/02/26 22:20:38 by victor           ###   ########.fr        #
+#    Updated: 2023/02/27 16:03:59 by vgoret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ CC		=	gcc
 # * SRC * #
 
 SRC = blackjack.c ft_score.c ft_cards.c ft_utils.c ft_printer.c ft_hand.c\
-	ft_gameplay.c \
+	ft_gameplay.c wallet.c\
 
 OBJ = ${SRC:.c=.o}
 
 ################################################################################
 # ? RULES ? #
 
-all: ${NAME} 
+all: clear progress ${NAME}
 
 ${NAME} : ${OBJ}	
 	@${CC} ${OBJ} 
@@ -62,3 +62,9 @@ fclean_util :
                                                  
 clear :
 	@clear
+
+blackjack :
+	@echo "88          88                       88        88                       88       \n88          88                       88        \"\"                       88       \n88          88                       88                                 88       \n88,dPPYba,  88 ,adPPYYba,  ,adPPYba, 88   ,d8  88 ,adPPYYba,  ,adPPYba, 88   ,d8 \n88P'    \"8a 88 \"\"     \`Y8 a8\"     \"\" 88 ,a8\"   88 \"\"     \`Y8 a8\"     \"\" 88 ,a8\"  \n88       d8 88 ,adPPPPP88 8b         8888[     88 ,adPPPPP88 8b         8888[    \n88b,   ,a8\" 88 88,    ,88 \"8a,   ,aa 88\`\"Yba,  88 88,    ,88 \"8a,   ,aa 88\`\"Yba, \n8Y\"Ybbd8\"'  88 \`\"8bbdP\"Y8  \`\"Ybbd8\"' 88   \`Y8a 88 \`\"8bbdP\"Y8  \`\"Ybbd8\"\' 88   \`Y8a\n                                              ,88\n					   888P\"\n"
+
+progress : 
+	@./loading-bar.sh

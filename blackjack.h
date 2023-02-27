@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blackjack.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:24:57 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 23:43:19 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/27 15:51:55 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ hand *ft_generate_hand(int nb);
 
 int    ft_player_score(hand *player);
 
-void ft_bank(hand *hand_bank, hand *hand_player);
+int ft_bank(hand *hand_bank, hand *hand_player);
 
 char demande_decision();
+
+int ft_update_wallet(int mise);
+int ft_get_wallet();
+void    printer_wallet();
+int ft_parier();
 
 #endif

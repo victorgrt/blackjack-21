@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:18:29 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 23:46:28 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/27 15:50:26 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    print_score(hand *bank, hand *player)
     int bank_score = 0;
     int player_score = 0;
 
-    printf("####SCORE#####\n");   
+    printf("##### RESUME DES SCORES #####\n");   
     while (bank)
     {
         bank_score += bank->carte->points;
@@ -33,7 +33,7 @@ void    print_score(hand *bank, hand *player)
 
 void    printer_hand(hand *hand, char *nom)
 {
-    printf("##########%s########\n", nom);
+    printf("##### %s ######\n", nom);
     if (hand->next == NULL)
     {
         printer_card(hand);

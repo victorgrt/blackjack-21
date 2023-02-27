@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blackjack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/26 23:57:41 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/27 16:01:49 by vgoret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int main(void)
     char decision; 
     char *your_hand = "YOUR HAND";
     char *bank = "BANK";
+    int mise = 0;
     hand *new_cart;
+    mise = ft_parier();
+    printf("%d\t%d\n", ft_get_wallet(), mise);
     //On génére un deck
     //On distribue 1 carte a la banque : il faut un main pour la banque
     hand *hand_bank = ft_generate_hand(1);
@@ -95,7 +98,8 @@ int main(void)
     decision = demande_decision();
     if (decision == 's')
     {
-        ft_bank(hand_bank, hand_player);
+        if (ft_bank(hand_bank, hand_player) == 1)
+            ft_update_wallet(mise * 2);
     }
     else if (decision  == 'c')
     {
@@ -105,6 +109,7 @@ int main(void)
         if (ft_player_score(hand_player) > 21)
         {
             printf("Perdu");
+            ft_update_wallet(-mise);
             return (0);
         }
         print_score(hand_bank, hand_player);
@@ -117,15 +122,22 @@ int main(void)
             if (ft_player_score(hand_player) > 21)
             {
                 printf("Perdu");
+                ft_update_wallet(-mise);
                 return (0);
             }
             print_score(hand_bank, hand_player);
             decision = demande_decision();
             if (decision == 's')
-                ft_bank(hand_bank, hand_player);
+            {
+                if (ft_bank(hand_bank, hand_player) == 1)
+                    ft_update_wallet(mise * 2);
+            }
         } 
         else if (decision == 's')
-            ft_bank(hand_bank, hand_player);
+        {
+            if (ft_bank(hand_bank, hand_player) == 1)
+                    ft_update_wallet(mise * 2);
+        }
         else if (decision == 'a')
         {
             printf("Dommage, une prochaine fois peut être\n");
