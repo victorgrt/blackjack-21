@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 22:20:19 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 13:24:33 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 13:29:51 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
                 hand_bank->next->next->next = new_cart;
                 printer_hand(hand_bank, bank);
                 printer_hand(hand_player, you);
-                print_score(hand_bank, hand_player);
             }
             if (ft_player_score(hand_bank) < 17)
             {
@@ -91,7 +90,6 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
                 hand_bank->next->next->next->next = new_cart;
                 printer_hand(hand_bank, bank);
                 printer_hand(hand_player, you);
-                print_score(hand_bank, hand_player);
             }
         }
         if (ft_player_score(hand_bank) > 21)

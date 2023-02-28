@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 13:26:11 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 13:39:05 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,6 @@
 Joueur joue : stand, double, demander carte, surrender
 Banquier joue : pioche jusqu'a minimum 17
 */
-
-hand *ft_hand(card *carte1, card *carte2)
-{
-    hand *main = malloc(sizeof(hand));
-    if (!main)
-        return (NULL);
-
-    if (carte1)
-    {
-        main->carte->points = carte1->points;
-        main->carte->suit = carte1->suit;
-        main->carte->value = carte1->value;
-        if (carte2)
-        {
-            main->next->carte->points = carte2->points;
-            main->next->carte->suit = carte2->suit;
-            main->next->carte->value = carte2->value;
-        }
-        else   
-            main->next = NULL;
-    }
-    return (main);
-}
-
 
 hand *ft_generate_hand(int nb)
 {
@@ -62,19 +38,6 @@ hand *ft_generate_hand(int nb)
     free(deck);
     return (main);
 }
-
-void    ft_add_carte_to_hand(hand *player_hand)
-{
-
-    while (player_hand)
-    {
-        if (player_hand->next == NULL)
-            player_hand->next = ft_generate_hand(1);
-        player_hand = player_hand->next;
-    }
-}
-
-/*Une main = une liste de cartes.*/
 
 int main(void)
 {     
@@ -100,6 +63,7 @@ int main(void)
     {
         if (ft_bank(hand_bank, hand_player, mise) == 1)
             ft_update_wallet(mise * 2);
+        return (0);
     }
     else if (decision  == 'c')
     {
@@ -133,12 +97,14 @@ int main(void)
             {
                 if (ft_bank(hand_bank, hand_player, mise) == 1)
                     ft_update_wallet(mise * 2);
+                return (0);
             }
         } 
         else if (decision == 's')
         {
             if (ft_bank(hand_bank, hand_player, mise) == 1)
                     ft_update_wallet(mise * 2);
+                return (0);
         }
         else if (decision == 'a')
         {
