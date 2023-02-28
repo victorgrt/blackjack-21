@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:24:57 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 12:46:27 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 13:23:06 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void    printer_wallet();
 int ft_parier();
 
 int ft_joueur_c(hand *hand_bank, hand *hand_player, int mise, int nb_next);
+
+void    ft_check_as(hand *new, hand *player);
 
 #endif

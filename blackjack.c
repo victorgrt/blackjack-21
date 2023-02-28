@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 12:59:23 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 13:26:11 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int main(void)
     else if (decision  == 'c')
     {
         new_cart = ft_generate_hand(1);
+        ft_check_as(new_cart, hand_player);
         hand_player->next->next = new_cart;
         printer_hand(hand_player, your_hand);
         if (ft_player_score(hand_player) > 21)

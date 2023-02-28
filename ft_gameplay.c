@@ -6,11 +6,22 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 22:20:19 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 12:59:39 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 13:24:33 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "blackjack.h"
+
+void    ft_check_as(hand *new, hand *player)
+{
+    if (new->carte->points == 11)
+    {
+        if (ft_player_score(player) + 11 > 21)
+        {
+            new->carte->points = 1;
+        }
+    }
+}
 
 int ft_joueur_c(hand *hand_bank, hand *hand_player, int mise, int nb_next)
 {
@@ -51,6 +62,7 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
     if (ft_player_score(hand_bank) <= 17)
     {
         new_cart = ft_generate_hand(1);
+        ft_check_as(new_cart, hand_player);
         hand_bank->next = new_cart;
         printer_hand(hand_bank, bank);
         printer_hand(hand_player, you);
@@ -58,6 +70,7 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
         if (ft_player_score(hand_bank) <= 17)
         {
             new_cart = ft_generate_hand(1);
+            ft_check_as(new_cart, hand_player);
             hand_bank->next->next = new_cart;
             printer_hand(hand_bank, bank);
             printer_hand(hand_player, you);
@@ -65,6 +78,7 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
             if (ft_player_score(hand_bank) < 17)
             {
                 new_cart = ft_generate_hand(1);
+                ft_check_as(new_cart, hand_player);
                 hand_bank->next->next->next = new_cart;
                 printer_hand(hand_bank, bank);
                 printer_hand(hand_player, you);
@@ -73,6 +87,7 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
             if (ft_player_score(hand_bank) < 17)
             {
                 new_cart = ft_generate_hand(1);
+                ft_check_as(new_cart, hand_player);
                 hand_bank->next->next->next->next = new_cart;
                 printer_hand(hand_bank, bank);
                 printer_hand(hand_player, you);
