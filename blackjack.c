@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 13:39:05 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 14:08:04 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main(void)
             ft_update_wallet(mise * 2);
         return (0);
     }
-    else if (decision  == 'c')
+    else if (decision  == 'h')
     {
         new_cart = ft_generate_hand(1);
         ft_check_as(new_cart, hand_player);
@@ -79,7 +79,7 @@ int main(void)
         }
         print_score(hand_bank, hand_player);
         decision = demande_decision();
-        if (decision == 'c')
+        if (decision == 'h')
         {
             new_cart = ft_generate_hand(1);
             hand_player->next->next->next = new_cart;

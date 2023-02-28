@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:18:29 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 13:56:50 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 15:24:40 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    print_score(hand *bank, hand *player)
     int bank_score = 0;
     int player_score = 0;
 
-    printf("\n\033[1m( ͡° ͜ʖ ͡°)◞[ \033[34mSCORES\033[0m ]\n\n");   
+    //printf("\n\033[1m( ͡° ͜ʖ ͡°)◞[ \033[34mSCORES\033[0m ]\n\n");   
     while (bank)
     {
         bank_score += bank->carte->points;
@@ -28,7 +28,7 @@ void    print_score(hand *bank, hand *player)
         player_score += player->carte->points;
         player = player->next;
     }
-    printf("🏦\033[31m LA BANQUE : %d.\033[0m\n🚶\033[36m TOI : %d\033[0m.\n", bank_score, player_score);
+    printf("\033[1m( ͡° ͜ʖ ͡°)◞[ 🏦\033[31m %d\033[0m 🚶\033[36m %d\033[0m]\n", bank_score, player_score);
 }
 
 void    printer_hand(hand *hand, char *nom)

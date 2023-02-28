@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 22:20:19 by victor            #+#    #+#             */
-/*   Updated: 2023/02/28 13:29:51 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/28 15:31:20 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void    ft_check_as(hand *new, hand *player)
 int ft_joueur_c(hand *hand_bank, hand *hand_player, int mise, int nb_next)
 {
     char *your_hand = "YOUR HAND";
+    char *bank = "BANK";
     hand *new_cart = ft_generate_hand(1);
 
     for (int i = 0; i < nb_next; i++)
         hand_player = hand_player->next;
     hand_player->next = new_cart;
     printer_hand(hand_player, your_hand);
+    printer_hand(hand_bank, bank);
     if (ft_player_score(hand_player) > 21)
     {
         printf("Perdu");
@@ -94,18 +96,16 @@ int ft_bank(hand *hand_bank, hand *hand_player, int mise)
         }
         if (ft_player_score(hand_bank) > 21)
         {
-            print_score(hand_bank, hand_player);
             printf("\033[32m💸 +%d 💸 💥 BANK BUSTED 💥\033[0m\n", mise);
             return 1;
         }
         else if (ft_player_score(hand_bank) >= ft_player_score(hand_player))
         {
-            print_score(hand_bank, hand_player);
             printf("\033[31m💀 -%d 💀 La maison gagne toujours 🃏\n\033[0m", mise);
             return 0;
         }
     }
-    printf("\033[32m💸 +%d 💸 Reviens vite\033[0m\n", mise);
+    printf("\033[32m💸 +%d 💸 wtf you actually won\033[0m\n", mise);
     return 1;
 }
 
@@ -113,9 +113,9 @@ char demande_decision()
 {
     char decision;
     do {
-        printf("Voulez-vous (c)arte, (s)top ou (a)bandonner ? ");
+        printf("Voulez-vous (h)it, (s)tand ou (a)bandonner ? ");
         scanf(" %c", &decision);
-    } while (decision != 'c' && decision != 's' && decision != 'a');
+    } while (decision != 'h' && decision != 's' && decision != 'a');
     return decision;
 }
 
