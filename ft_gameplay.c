@@ -3,27 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gameplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 22:20:19 by victor            #+#    #+#             */
-/*   Updated: 2023/02/27 15:56:02 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/02/28 12:59:39 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "blackjack.h"
 
+int ft_joueur_c(hand *hand_bank, hand *hand_player, int mise, int nb_next)
+{
+    char *your_hand = "YOUR HAND";
+    hand *new_cart = ft_generate_hand(1);
+
+    for (int i = 0; i < nb_next; i++)
+        hand_player = hand_player->next;
+    hand_player->next = new_cart;
+    printer_hand(hand_player, your_hand);
+    if (ft_player_score(hand_player) > 21)
+    {
+        printf("Perdu");
+        ft_update_wallet(-mise);
+        return (0);
+    }
+    print_score(hand_bank, hand_player);
+    return (1);
+}
+
 int ft_parier()
 {
     int mise = 0;
     
-    printer_wallet();
-    printf("\nVous avez : %d, combien voulez-vous miser ?\n", ft_get_wallet());
+    //printer_wallet();
+    printf("\n💰Tu as %d pépéttes, combien tu veux perdre (ou gagner biensûr😉) ?💰\n", ft_get_wallet());
     scanf(" %d", &mise);
     ft_update_wallet(-mise);
     return (mise);
 }
 
-int ft_bank(hand *hand_bank, hand *hand_player)
+int ft_bank(hand *hand_bank, hand *hand_player, int mise)
 {
     hand *new_cart;
     char *bank = "BANK'S HAND";
@@ -62,16 +81,18 @@ int ft_bank(hand *hand_bank, hand *hand_player)
         }
         if (ft_player_score(hand_bank) > 21)
         {
-            printf("BANK BUSTED, YOU WIN !");
+            print_score(hand_bank, hand_player);
+            printf("\033[32m💸 +%d 💸 💥 BANK BUSTED 💥\033[0m\n", mise);
             return 1;
         }
         else if (ft_player_score(hand_bank) >= ft_player_score(hand_player))
         {
-            printf("Perdu");
+            print_score(hand_bank, hand_player);
+            printf("\033[31m💀 -%d 💀 La maison gagne toujours 🃏\n\033[0m", mise);
             return 0;
         }
     }
-    printf("GG !");
+    printf("\033[32m💸 +%d 💸 Reviens vite\033[0m\n", mise);
     return 1;
 }
 

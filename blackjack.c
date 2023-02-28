@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blackjack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:28:16 by victor            #+#    #+#             */
-/*   Updated: 2023/02/27 16:01:49 by vgoret           ###   ########.fr       */
+/*   Updated: 2023/02/28 12:59:23 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int main(void)
     decision = demande_decision();
     if (decision == 's')
     {
-        if (ft_bank(hand_bank, hand_player) == 1)
+        if (ft_bank(hand_bank, hand_player, mise) == 1)
             ft_update_wallet(mise * 2);
     }
     else if (decision  == 'c')
@@ -108,7 +108,7 @@ int main(void)
         printer_hand(hand_player, your_hand);
         if (ft_player_score(hand_player) > 21)
         {
-            printf("Perdu");
+            printf("\033[31m💀 -%d 💀 Tu as été trop greedy mon ami...🃏\033[0m\n", mise);
             ft_update_wallet(-mise);
             return (0);
         }
@@ -121,7 +121,8 @@ int main(void)
             printer_hand(hand_player, your_hand);
             if (ft_player_score(hand_player) > 21)
             {
-                printf("Perdu");
+                print_score(hand_bank, hand_player);
+                printf("\033[31m💀 -%d 💀 Tu as été trop greedy mon ami...🃏\033[0m\n", mise);
                 ft_update_wallet(-mise);
                 return (0);
             }
@@ -129,13 +130,13 @@ int main(void)
             decision = demande_decision();
             if (decision == 's')
             {
-                if (ft_bank(hand_bank, hand_player) == 1)
+                if (ft_bank(hand_bank, hand_player, mise) == 1)
                     ft_update_wallet(mise * 2);
             }
         } 
         else if (decision == 's')
         {
-            if (ft_bank(hand_bank, hand_player) == 1)
+            if (ft_bank(hand_bank, hand_player, mise) == 1)
                     ft_update_wallet(mise * 2);
         }
         else if (decision == 'a')
